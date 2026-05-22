@@ -1,15 +1,23 @@
-# M365 & Azure Security Analysis
+# M365 & Azure Security Triage (AI-Powered)
 
-A security-focused triage tool for Microsoft 365 Message Center and Azure Service Health/Updates. It uses local LLMs (Ollama) to analyze incoming changes against specific organizational security concerns.
+**Bridging the gap between "dumb" alerts and expensive SOC analysis.**
 
-## Features
-- **M365 Message Center**: Fetches and triages messages via Microsoft Graph.
-- **Azure Integration**: Fetches Service Health, Advisor Security recommendations, and Product Updates.
-- **Hybrid Auth**: Uses Service Principal for Graph and Azure CLI (`az login`) for ARM/Azure resources.
-- **Local LLM**: Fully local analysis using Ollama (e.g., Llama 3.2).
-- **Security Triage**: Multi-pass analysis (Relevance -> Deep Analysis) with adversarial reasoning.
-- **Persistence**: Supports Postgres (Neon/Local) for tracking analyzed messages.
-- **Notifications**: Optional Telegram alerts for high/medium risk items.
+This tool is a high-fidelity security triage engine for the Microsoft Cloud. It transforms the overwhelming stream of M365 Message Center posts and Azure Service Updates into actionable security intelligence using local LLMs (Ollama). 
+
+By grounding an AI "Senior Security Architect" in your specific tenant context, it filters out the noise of UI/UX changes and focuses exclusively on material shifts in your security posture.
+
+## Key Standout Features
+
+- **Adversarial Reasoning**: Unlike simple keyword filters, the engine performs an internal "Red Team vs. Blue Team" debate for every update, forcing the model to identify exploit vectors and mitigation strategies before reaching a final risk rating.
+- **Hybrid Authentication**: Implements a sophisticated local-first auth model. It utilizes your active **Azure CLI session (`az login`)** for deep Azure resource scanning while maintaining a scoped Service Principal for M365 Graph data.
+- **Tenant-Grounded Triage**: The AI is grounded in your actual environment (enabled SKUs, active service usage, and discovered Azure resource types), significantly reducing hallucinations and false positives.
+- **Privacy-First**: Designed for high-sensitivity environments. All analysis is performed **locally via Ollama**. Your organizational security guidance and analysis results never leave your infrastructure.
+
+## Core Capabilities
+- **M365 Message Center**: Full lifecycle triage of service announcements.
+- **Azure Security Intelligence**: Automatically ingests Azure Service Health, Advisor Security recommendations, and filtered Product Updates.
+- **Dual-Persistence Architecture**: Seamlessly syncs between a high-speed local Postgres and a shared Neon.tech cloud database.
+- **Security Hotspots**: Allows you to define "Security Seed Packs"—custom organizational concerns (e.g., Copilot agentic risks, TFN exfiltration) that steer the AI's focus.
 
 ## Setup
 
