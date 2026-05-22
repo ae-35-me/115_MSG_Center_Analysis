@@ -1,0 +1,14 @@
+# Secrets and Config
+.env
+guidance.json
+
+# Logs and Data
+*.log
+output.txt
+full_sweep.log
+files.zip
+feed/
+__pycache__/
+
+# OS files
+.DS_Store

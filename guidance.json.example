@@ -1,0 +1,9 @@
+{
+    "org_security_hotspots": [
+        {
+            "theme": "example_theme",
+            "description": "Describe what the LLM should look for here.",
+            "escalation": "review|escalate|monitor"
+        }
+    ]
+}
