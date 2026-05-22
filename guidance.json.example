@@ -30,5 +30,6 @@
             "description": "Updates to PIM (Privileged Identity Management), access reviews, or entitlement management.",
             "escalation": "review"
         }
-    ]
+    ],
+    "risk_rating_rubric": "\nHigh:\n- New or expanded cross-boundary data access (e.g., new sources Copilot/agents can ingest; new connectors; new default sharing paths)\n- Bypass/weakening of existing controls (labels/DLP/IB/CA) or reduced ability to enforce them\n- Material identity/permission model changes (new admin roles, broader default scopes)\n- Compliance impact with short timelines (action required soon)\n\nMedium:\n- New capability that increases attack surface, but mitigations exist or are configurable\n- Control changes are optional / off by default, but likely to be adopted\n- Logging/visibility changes that require uplift\n\nLow:\n- UI/UX change, non-security feature, or security improvement with no action required\n- Changes confined to out-of-scope services\n"
 }

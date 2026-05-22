@@ -1204,30 +1204,7 @@ def ollama_generate(prompt: str, model: str, timeout: int) -> str:
 
 # ── Analysis ──────────────────────────────────────────────────────────────────
 
-def load_guidance() -> dict:
-    """Load security seed pack from guidance.json or return a default."""
-    guidance_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "guidance.json")
-    if os.path.exists(guidance_path):
-        try:
-            with open(guidance_path, "r", encoding="utf-8") as f:
-                return json.load(f)
-        except Exception as e:
-            print(f"  ⚠  Failed to load guidance.json: {e}")
-    
-    # Fallback to minimal default
-    return {
-        "org_security_hotspots": [
-            {
-                "theme": "general_security",
-                "description": "General security best practices for M365 and Azure.",
-                "escalation": "review"
-            }
-        ]
-    }
-
-SECURITY_SEED_PACK = load_guidance()
-
-RISK_RATING_RUBRIC = """
+DEFAULT_RISK_RUBRIC = """
 High:
 - New or expanded cross-boundary data access (e.g., new sources Copilot/agents can ingest; new connectors; new default sharing paths)
 - Bypass/weakening of existing controls (labels/DLP/IB/CA) or reduced ability to enforce them
@@ -1243,6 +1220,37 @@ Low:
 - UI/UX change, non-security feature, or security improvement with no action required
 - Changes confined to out-of-scope services
 """
+
+
+def load_guidance() -> tuple[dict, str]:
+    """Load security seed pack and rubric from guidance.json or return a default."""
+    guidance_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "guidance.json")
+    seed_pack = {
+        "org_security_hotspots": [
+            {
+                "theme": "general_security",
+                "description": "General security best practices for M365 and Azure.",
+                "escalation": "review"
+            }
+        ]
+    }
+    rubric = DEFAULT_RISK_RUBRIC
+
+    if os.path.exists(guidance_path):
+        try:
+            with open(guidance_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+                if "org_security_hotspots" in data:
+                    seed_pack = {"org_security_hotspots": data["org_security_hotspots"]}
+                if "risk_rating_rubric" in data:
+                    rubric = data["risk_rating_rubric"]
+        except Exception as e:
+            print(f"  ⚠  Failed to load guidance.json: {e}")
+    
+    return seed_pack, rubric
+
+
+SECURITY_SEED_PACK, RISK_RATING_RUBRIC = load_guidance()
 
 RELEVANCE_ONLY_TEMPLATE = """SYSTEM: 
 You are a Senior Information Security Architect specializing in Microsoft 365 and Azure. 
