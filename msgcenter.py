@@ -695,9 +695,8 @@ def get_azure_updates_rss(providers_in_use: list[str], days: int = 30) -> list[d
     """Fetch Azure Updates RSS feed and filter by resource providers in use."""
     print("📰  Fetching Azure product updates (RSS)...")
     
-    # Priority-ordered feed URLs
+    # Priority-ordered feed URLs (Strictly official Microsoft channels)
     urls = [
-        "https://azurefeeds.com/feed",
         "https://www.microsoft.com/releasecommunications/api/v2/azure/rss",
         "https://azurecomcdn.azureedge.net/en-us/updates/feed/"
     ]
