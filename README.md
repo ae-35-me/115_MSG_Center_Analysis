@@ -19,6 +19,19 @@ By grounding an AI "Senior Security Architect" in your specific tenant context, 
 - **Dual-Persistence Architecture**: Seamlessly syncs between a high-speed local Postgres and a shared Neon.tech cloud database.
 - **Security Hotspots**: Allows you to define "Security Seed Packs"—custom organizational concerns (e.g., Copilot agentic risks, TFN exfiltration) that steer the AI's focus.
 
+## Headless by Design: Analysis over Presentation
+
+This tool is built for the **heavy lifting** of data collection and automated triage. It is not a visualization platform. By design, it functions as a headless intelligence engine that delivers high-fidelity, structured data (JSONB) into your persistent database.
+
+While the tool provides immediate "push" notifications via Telegram for critical alerts, the broader presentation of the longitudinal data is left to the user's preferred ecosystem.
+
+### Suggested Downstream Visualization
+Since all analysis is stored in structured Postgres tables, you can easily layer your own reporting tools on top:
+- **PowerBI / Tableau**: For executive risk reporting and M365/Azure change trends.
+- **Grafana**: For real-time monitoring of security implications and model performance.
+- **Streamlit**: For building custom, Python-based internal security dashboards.
+- **SIEM Integration**: Forward the filtered, high-risk JSON results directly into Microsoft Sentinel or Splunk for incident response.
+
 ## Setup
 
 ### 1. Prerequisites
