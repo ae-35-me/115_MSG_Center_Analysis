@@ -1,4 +1,4 @@
-# M365 & Azure Security Triage (AI-Powered)
+# M365 & Azure Security Triage
 
 **Bridging the gap between "dumb" alerts and expensive SOC analysis.**
 
