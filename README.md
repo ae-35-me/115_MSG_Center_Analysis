@@ -1,7 +1,5 @@
 # M365 & Azure Security Triage
 
-**Bridging the gap between "dumb" alerts and expensive SOC analysis.**
-
 This tool is a high-fidelity security triage engine for the Microsoft Cloud. It transforms the overwhelming stream of M365 Message Center posts and Azure Service Updates into actionable security intelligence using local LLMs (Ollama). 
 
 By grounding an AI "Senior Security Architect" in your specific tenant context, it filters out the noise of UI/UX changes and focuses exclusively on material shifts in your security posture.
